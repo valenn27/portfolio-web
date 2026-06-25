@@ -1,0 +1,296 @@
+@import "tailwindcss";
+@plugin "tailwindcss-motion";
+
+@theme {
+  --color-primary: #020b16;
+  --color-secondary: #2790b0;
+  --color-footer: #0d0d0d;
+  --color-input-bg: #f2ebd9;
+  --color-button: #5a7a35;
+  --color-surface: rgba(255, 255, 255, 0.05);
+  --color-surface-hover: rgba(255, 255, 255, 0.1);
+}
+
+:root {
+  --primary: var(--color-primary);
+  --secondary: var(--color-secondary);
+  --footer: var(--color-footer);
+  --input-bg: var(--color-input-bg);
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 20px rgba(202, 56, 59, 0.3); }
+  50% { box-shadow: 0 0 40px rgba(202, 56, 59, 0.6); }
+}
+
+@keyframes typing {
+  from { width: 0; }
+  to { width: 100%; }
+}
+
+@keyframes blink-caret {
+  from, to { border-color: transparent; }
+  50% { border-color: var(--secondary); }
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.8s ease-out forwards;
+}
+
+.animate-fade-in {
+  animation: fadeIn 1s ease-out forwards;
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+
+#about, #skills, #projects, #contact {
+  opacity: 0;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  #about {
+    view-timeline-name: --about-timeline;
+    view-timeline-axis: block;
+    animation-timeline: --about-timeline;
+    animation-name: fadeInUp;
+    animation-range: entry 0% cover 40%;
+    animation-fill-mode: forwards;
+  }
+
+  #skills {
+    view-timeline-name: --skills-timeline;
+    view-timeline-axis: block;
+    animation-timeline: --skills-timeline;
+    animation-name: fadeInUp;
+    animation-range: entry 0% cover 40%;
+    animation-fill-mode: forwards;
+  }
+
+  #projects {
+    view-timeline-name: --projects-timeline;
+    view-timeline-axis: block;
+    animation-timeline: --projects-timeline;
+    animation-name: fadeInUp;
+    animation-range: entry 0% cover 40%;
+    animation-fill-mode: forwards;
+  }
+
+  #contact {
+    view-timeline-name: --contact-timeline;
+    view-timeline-axis: block;
+    animation-timeline: --contact-timeline;
+    animation-name: fadeInUp;
+    animation-range: entry 0% cover 40%;
+    animation-fill-mode: forwards;
+  }
+}
+
+@supports not (animation-timeline: view()) {
+  #about, #skills, #projects, #contact {
+    opacity: 1;
+  }
+}
+
+.typing {
+  overflow: hidden;
+  white-space: nowrap;
+  border-right: 3px solid var(--secondary);
+  animation: typing 3s steps(30, end), blink-caret 0.75s step-end infinite;
+  display: inline-block;
+}
+
+.typing-delay {
+  overflow: hidden;
+  white-space: nowrap;
+  border-right: 3px solid var(--secondary);
+  animation: typing 3s steps(30, end) 1.5s, blink-caret 0.75s step-end infinite 1.5s;
+  display: inline-block;
+}
+
+.hover-lift {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.hover-lift:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+}
+
+.gradient-border {
+  position: relative;
+  background: linear-gradient(var(--primary), var(--primary)) padding-box,
+              linear-gradient(135deg, var(--secondary), #ff6b6b) border-box;
+  border: 2px solid transparent;
+}
+
+.glass-effect {
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.hover-effect::before {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: -80%;
+  z-index: -1;
+  background: linear-gradient(135deg, var(--secondary), #ff6b6b);
+  width: 130%;
+  height: 150%;
+  border-radius: 50%;
+  transition: all 0.6s ease;
+}
+
+.hover-effect:hover::before {
+  top: -23%;
+  left: -15%;
+}
+
+.custom-input {
+  background-color: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(202, 56, 59, 0.3);
+  color: #fff;
+  outline: none;
+  transition: all 0.3s ease;
+}
+
+.custom-input::placeholder {
+  color: rgba(255, 255, 255, 0.4);
+}
+
+.custom-input:focus {
+  border-color: var(--secondary);
+  box-shadow: 0 0 0 3px rgba(202, 56, 59, 0.2);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: "Montserrat", sans-serif;
+  background-color: var(--primary);
+  overflow-x: hidden;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--primary);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--secondary);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #a52a2d;
+}
+
+.font-bricolage {
+  font-family: "Bricolage Grotesque", sans-serif;
+}
+
+.text-gradient {
+  background: linear-gradient(135deg, #fff 0%, var(--secondary) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.bg-grid-pattern {
+  background-image: 
+    linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+  background-size: 50px 50px;
+}
+
+.bg-dots-pattern {
+  background-image: radial-gradient(rgba(255, 255, 255, 0.1) 1px, transparent 1px);
+  background-size: 20px 20px;
+}
+
+.shimmer {
+  position: relative;
+  overflow: hidden;
+}
+
+.shimmer::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.1),
+    transparent
+  );
+  animation: shimmer 2s infinite;
+}
+
+@keyframes shimmer {
+  100% { left: 100%; }
+}
+
+@media (max-width: 640px) {
+  .typing, .typing-delay {
+    white-space: normal;
+    animation: none;
+    border-right: none;
+  }
+
+  #about, #skills, #projects, #contact {
+    opacity: 1;
+  }
+
+  #mobile-menu {
+    transition: max-height 0.5s ease-in-out;
+    overflow: hidden;
+  }
+
+  #mobile-menu.hidden {
+    max-height: 0;
+  }
+
+  #mobile-menu li {
+    opacity: 0;
+    transform: translateY(-20px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+  }
+}
