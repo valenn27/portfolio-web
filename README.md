@@ -4,7 +4,7 @@
 
 ## Stack
 
-- **HTML / CSS / JS** vanilla — sin frameworks
+- **HTML / CSS / JS**
 - **Vite** como bundler y dev server
 - **Tailwind CSS v4** para estilos
 - **Font Awesome** para iconografía
